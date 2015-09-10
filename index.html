@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script type="text/javascript" src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#btnSubmit').click(function(){
+					var Number1 = parseInt($('#txtFirstNumber').val());
+					var Number2 = parseInt($('#txtSecondNumber').val());
+					if (isNaN(Number1) == false && isNaN(Number2) == false){
+						$.post('./calculate.php',{n1 : Number1,n2:Number2}).done(function(data){
+							$('#result').html(data);
+						});
+					}else{
+						$('#result').html('Please Fill Fields with Number');
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<label>
+			First Number
+			<input type="text" id="txtFirstNumber" placeholder="please input first Number" />
+		</label>
+		<label>
+			Second Number
+			<input type="text" id="txtSecondNumber" placeholder="please input Second Number" />
+		</label>
+		<button type="button" id="btnSubmit" value="Switch Number">Switch Number</button>
+		<br/>
+		<span id="result"></span>
+	</body>
+</html>
